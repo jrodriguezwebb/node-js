@@ -7,8 +7,16 @@ let argv = require('yargs').command('listar', 'Imprime en consola la tabla de mu
     }
 }).argv;
 
-console.log(argv);
+let comando = argv._[0];
 
-crearArchivo(argv.base)
-    .then(archivo => { console.log(`El archivo tabla-${archivo}.txt ha sido creado`); });
-    
+switch(comando) {
+    case 'listar':
+        console.log('listar');
+    break;
+    case 'crear':
+        crearArchivo(argv.base)
+            .then(archivo => { console.log(`El archivo tabla-${archivo}.txt ha sido creado`); });
+    break;
+    default:
+        console.log('Comando no reconocido');
+}
